@@ -15,8 +15,8 @@ include(create_package)
 make_cmake_package(test_lib test_lib)
 # install all of the headers for the libraries
 install(
-    DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    DESTINATION ${CMAKE_INSTALL_PREFIX}
+    DIRECTORY include/test_lib
+    DESTINATION include
     FILES_MATCHING PATTERN "*.h" 
     )
 

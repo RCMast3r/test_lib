@@ -1,13 +1,13 @@
 { stdenv, cmake, cmake_macros }:
 
 stdenv.mkDerivation rec {
-  pname = "my_deriv";
+  pname = "test_libyo";
   version = "0.1.0";
   src = ./.;
-  nativeBuildInputs = [ cmake_macros cmake ];
-  propagatedBuildInputs = [ ];
+  nativeBuildInputs = [ cmake ];
+  propagatedBuildInputs = [ cmake_macros cmake ];
   # dontPatch = true;
   # dontFixup = true;
-  # dontStrip = true;
+  dontStrip = true;
   # dontPatchELF = true;
 }

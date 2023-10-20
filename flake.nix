@@ -9,7 +9,7 @@
   outputs = { self, nixpkgs, utils, easy_cmake }:
     let
       test_lib_overlay = final: prev: {
-        test_lib = final.callPackage ./default.nix { };
+        test_libyo = final.callPackage ./default.nix { };
       };
       my_overlays = [ test_lib_overlay easy_cmake.overlays.default ];
       pkgs = import nixpkgs {
@@ -21,9 +21,15 @@
       overlays.default = nixpkgs.lib.composeManyExtensions my_overlays;
 
       packages.x86_64-linux =
+        let
+          pkgs = import nixpkgs {
+            system = "x86_64-linux";
+            overlays = [ self.overlays.default ];
+          };
+        in
         rec {
-          test_lib = pkgs.test_lib;
-          default = test_lib;
+          test_libyo = pkgs.test_libyo;
+          default = test_libyo;
         };
       devShells.x86_64-linux.default =
         pkgs.mkShell rec {
